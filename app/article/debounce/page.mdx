@@ -1,0 +1,145 @@
+import { CodeBlock } from "@/app/codeblock";
+import { AnimatedName } from "../animated-name.tsx";
+
+export const metadata = {
+  title: "Debounce",
+  alternates: {
+    canonical: "/article/debounce",
+  },
+};
+
+## Debounce
+
+<AnimatedName />
+
+The third law of motion tells us, “For every action, there is an equal and opposite reaction.” But what happens when some actions are unintended, rapid, or chaotic? Meet debounce, a principle and technique designed to bring order to situations where reactions could go out of control.
+
+Let’s explore Problems with in Impulse
+
+Let’s start with a scenario of an innocent baby playing near an open fire. The baby’s action — reaching for the fire — is deliberate, but the baby lacks awareness of the consequence, “a burn”. The reaction, though equal and opposite, is one that neither the baby nor the parent is unprepared for.
+
+Now imagine a different situation — you come home after a long day, eager to catch your favorite show. You grab the remote, press the power button…and chaos ensues. The TV flickers on/off/on/off/on/off, ignoring your intention and reacting to every tiny variation in your press. Eventually, after 20 frustrated attempts, the TV settles, but only after you’ve almost given up.
+
+Debounce, a saviour from unfavourable reactions
+
+These frustrating scenarios are the very essence of what debounce is designed to solve. When actions come in rapid succession — whether due to human error, mechanical flaws, or even deliberate repetition — debounce steps in to ensure that only the meaningful action triggers a response.
+
+In the case of the remote, debounce would delay the response slightly. Instead of reacting to every fluctuation in the press of a button, the system waits until the input stabilizes and only sends a single at a time. It’s like a careful listener who pauses to confirm the intention before replying. Originally designed for electronic hardware solution — to mechanical switch bounce, debounce is now a software staple.
+
+Adoption of debounce into the software Ecosystem
+
+Debounce in software developer is similar mirrors its essence in electronics — preventing redundant actions while ensuring reliable outcomes. In programming developers writes create user-friendly applications and ensure building reliable systems.
+
+It is an instrument that shaping the behaviour of applications particularly when prompt but significant responses are needed, ensuring a function is invoked only after a specified delay or inputs are staple. This way programmers build reliable and optimised application.
+
+For instance, in web applications, implementing a delayed API requests instead of sending requests to the server on every keystroke in a search field, debounce consolidates these requests, sending them only after the user pauses typing. This not only reduces server load but also improves response times, providing an excellent experience for the user.
+
+Another critical use case lies in preventing duplicate actions, such as avoiding duplicate payment transactions. Imagine a user clicking a “Pay Now” button multiple times due to network lag — each click could initiate a separate payment. With debounce, only the first click is processed within a defined time frame, eliminating errors, reducing server-side computations, and ensuring reliable financial transactions.
+
+Here are concepts that helps us build a debounce function in Javascript.
+
+Higher-Order Function: A higher-order function is a function that takes another function as an argument or returns one. The debounce function takes an input function (childFunc) and returns a new function with additional logic (debouncing behavior).
+
+Here are concepts that helps us build a debounce function in Javascript.
+
+Higher-Order Function: A higher-order function is a function that takes another function as an argument or returns one. The debounce function takes an input function (childFunc) and returns a new function with additional logic (debouncing behavior).
+
+<CodeBlock>
+  {`
+  function mainFunc(childFunc) { 
+return function (arg) { 
+childFunc(arg); // Calls the input function with the provided argument 
+}; 
+} 
+const log = mainFunc((msg) => console.log(msg)); 
+log("Hello, Higher-Order Functions!")
+  `}
+</CodeBlock>
+
+Closures: A closure allows a returned function to access variables from its outer scope, even after the outer function has executed. In a debounce function, the timer variable is declared in the outer function and remembered by the returned function to manage delays
+
+<CodeBlock>
+{`
+function outer() { 
+  let count = 0; 
+  return function () { 
+    count++; 
+    console.log(\`Count: \${count}\`); 
+  }; 
+}
+
+const counter = outer();
+counter(); // Count: 1
+counter(); // Count: 2
+`}
+
+</CodeBlock>
+
+Use cases
+
+Frontend Use Case
+
+Scenario — Search Input Autocomplete: In a fintech app frontend, debounce can be used to optimize API calls for searching transaction histories as a user types.
+
+<CodeBlock>
+{`
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};
+
+const fetchSuggestions = (query) => {
+console.log(\`Fetching suggestions for: \${query}\`);
+// Simulated API call
+};
+
+const handleInput = debounce((e) => {
+fetchSuggestions(e.target.value);
+}, 300);
+
+// HTML and event listener
+document.getElementById("search").addEventListener("input", handleInput);
+
+// HTML
+
+<input type="text" id="search" placeholder="Search transactions..." />
+`}
+</CodeBlock>
+
+Backend Use Case: Aggregating and Processing Logs
+
+In a fintech application, managing a high volume of transactional logs — such as user transfers, payments, and withdrawals — can place a significant strain on backend systems if processed individually in real-time. Using a debounced mechanism allows logs to be aggregated into a buffer and processed in batches at regular intervals. This approach not only ensures system efficiency but also reduces server workload, preventing performance bottlenecks and optimizing resource usage. Here’s how it can be implemented.
+
+<CodeBlock>
+  {`
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer); // Reset the timer
+    timer = setTimeout(() => func(...args), delay); // Set a new timer
+  };
+};
+
+// Log buffer to store incoming logs
+let logBuffer = [];
+
+// Function to process logs in batches
+const debouncedProcessLogs = debounce(() => {
+console.log(\`Processing \${logBuffer.length} logs:\`, logBuffer);
+logBuffer = []; // Clear the buffer after processing
+}, 5000); // Process logs every 5 seconds
+
+// Function to add logs to the buffer
+const addLog = (log) => {
+logBuffer.push(log); // Append log to the buffer
+};
+`}
+
+</CodeBlock>
+
+Summary
+
+Using debounce effectively optimizes backend and frontend operations. On the backend, it ensures batched processing of events like transaction logs, saving server resources. On the frontend, debounce prevents excessive API calls, providing a seamless user experience for features like search and autocomplete.
