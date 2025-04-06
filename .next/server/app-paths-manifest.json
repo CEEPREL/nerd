@@ -1,16 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/opengraph-image.png/route": "app/opengraph-image.png/route.js",
-  "/page": "app/page.js",
-  "/article/System-Performance-Engineering/page": "app/article/System-Performance-Engineering/page.js",
-  "/article/abc-of-programming/page": "app/article/abc-of-programming/page.js",
-  "/article/Software-and-Security/page": "app/article/Software-and-Security/page.js",
-  "/article/product-development/page": "app/article/product-development/page.js",
-  "/article/productivity/page": "app/article/productivity/page.js",
-  "/article/debounce/page": "app/article/debounce/page.js",
-  "/article/problem-solver/page": "app/article/problem-solver/page.js",
-  "/work/page": "app/work/page.js",
-  "/article/ai/page": "app/article/ai/page.js"
+  "/page": "app/page.js"
 }
