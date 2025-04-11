@@ -7,9 +7,6 @@
     "delete": "rm -rf app/n",
     "vercel-build": "next build"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "dependencies": {
     "@next/mdx": "15.1.2",
     "@tailwindcss/postcss": "^4.0.0-beta.8",
