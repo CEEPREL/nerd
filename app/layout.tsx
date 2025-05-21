@@ -1,17 +1,15 @@
+// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/react";
 import { cookies } from "next/headers";
+import ClientLayout from "./client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ceeprel.com.ng"),
-  alternates: {
-    canonical: "/",
-  },
   title: {
     default: "A.B Ceeprel",
     template: "%s | Agboola Boluwatife",
@@ -22,11 +20,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  // Check the cookie for the current theme (or default to light)
-  const theme = (await cookies()).get("theme")?.value || "light"; // Default to "light"
+}) {
+  const theme = (await cookies()).get("theme")?.value || "light";
 
   return (
     <ViewTransitions>
@@ -36,19 +33,21 @@ export default async function RootLayout({
             theme === "dark" ? "dark" : ""
           }`}
         >
-          <div
-            className={`min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 ${
-              theme === "dark"
-                ? "bg-gray-900 text-white"
-                : "bg-white text-gray-900"
-            }`}
-          >
-            <main className="max-w-[60ch] mx-auto w-full space-y-6">
-              {children}
-            </main>
-            <Footer />
-            <Analytics />
-          </div>
+          <ClientLayout>
+            <div
+              className={`min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 ${
+                theme === "dark"
+                  ? "bg-gray-900 text-white"
+                  : "bg-white text-gray-900"
+              }`}
+            >
+              <main className="max-w-[60ch] mx-auto w-full space-y-6">
+                {children}
+              </main>
+              <Footer />
+              <Analytics />
+            </div>
+          </ClientLayout>
         </body>
       </html>
     </ViewTransitions>

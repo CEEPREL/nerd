@@ -2,6 +2,9 @@ module.exports = {
   darkMode: "className", // Allows you to toggle dark mode via adding the 'dark' class to the html tag
   theme: {
     extend: {
+      perspective: {
+        1000: "1000px",
+      },
       colors: {
         "dark-background": "#111827",
         "light-background": "#ffffff",
