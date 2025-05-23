@@ -6,7 +6,6 @@ import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/react";
 import { cookies } from "next/headers";
 import ClientLayout from "./client-layout";
-import PageTransition from "./pagetransition";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,7 +42,7 @@ export default async function RootLayout({
               }`}
             >
               <main className="max-w-[60ch] mx-auto w-full space-y-6">
-                <PageTransition>{children}</PageTransition>
+                {children}
               </main>
               <Footer />
               <Analytics />
