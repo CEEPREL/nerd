@@ -56,11 +56,12 @@ export default async function RootLayout({
 
 function Footer() {
   const links = [
-    { name: "@ceeprel3", url: "https://x.com/ceeprel3" },
+    { name: "let’s work together", url: "mailto:bolutifegboola@gmail.com" },
+    { name: "x", url: "https://x.com/ceeprel3" },
     { name: "instagram", url: "https://www.instagram.com/ceeprel" },
     {
       name: "linkedin",
-      url: "www.linkedin.com/in/boluwatife-agboola-a04ab985",
+      url: "www.linkedin.com/in/ceeprel",
     },
     { name: "github", url: "https://github.com/ceeprel" },
   ];
