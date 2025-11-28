@@ -57,7 +57,7 @@ export default async function RootLayout({
 function Footer() {
   const links = [
     { name: "let’s work together", url: "mailto:bolutifegboola@gmail.com" },
-    { name: "x", url: "https://x.com/ceeprel3" },
+    { name: "x/twitter", url: "https://x.com/ceeprel3" },
     { name: "instagram", url: "https://www.instagram.com/ceeprel" },
     {
       name: "linkedin",
